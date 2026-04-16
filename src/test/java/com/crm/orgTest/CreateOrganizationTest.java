@@ -83,7 +83,7 @@ public class CreateOrganizationTest extends BaseClass {
     }
 
     @Test
-    public void createOrgwithIndustrytype() throws IOException {
+    public void createOrgwithIndustrytype() throws IOException, InterruptedException {
         String orgName=elib.readDatatFromExcel("Org",1,0)+jlib.randint();
         HomePage hp= new HomePage(driver);
         hp.orgButton.click();
@@ -96,10 +96,7 @@ public class CreateOrganizationTest extends BaseClass {
         wlib.handledropdown("Customer",op.type);
 
         op.saveButton.click();
-
-
-
-
+        Thread.sleep(5000);
     }
 }
 //    @DataProvider(name="Org data")
