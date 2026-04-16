@@ -14,7 +14,7 @@ import java.io.IOException;
 public class createContactTest extends BaseClass {
 
     @Test
-    public void createContactBynameAndPhone() throws IOException {
+    public void createContactBynameAndPhone() throws IOException, InterruptedException {
 
         ContactPage cp= new ContactPage(driver);
         cp.createContact();
@@ -31,5 +31,9 @@ public class createContactTest extends BaseClass {
         else{
             System.out.println("contact not created");
         }
+
+        Thread.sleep(5000);
     }
+
+
 }

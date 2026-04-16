@@ -6,7 +6,7 @@
 
         <classes>
             <class name="com.crm.orgTest.CreateOrganizationTest"/>
-<!--            <class name="com.crm.orgTest.createContactTest"/>-->
+            <class name="com.crm.orgTest.createContactTest"/>
         </classes>
     </test>
 
