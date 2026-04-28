@@ -79,15 +79,22 @@
             </plugin>
 
             <!-- ✅ Surefire plugin (UPDATED) -->
+            <!-- Surefire Plugin to run TestNG -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.5</version>
+
                 <configuration>
+                    <!-- Link TestNG XML -->
                     <suiteXmlFiles>
-                        <!-- 🔥 Dynamic based on profile -->
                         <suiteXmlFile>testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
+
+                    <!-- Optional parallel execution -->
+                    <parallel>methods</parallel>
+                    <threadCount>3</threadCount>
+
                 </configuration>
             </plugin>
 
@@ -95,24 +102,24 @@
     </build>
 
     <!-- ✅ PROFILES ADDED -->
-<!--    <profiles>-->
+    <profiles>
 
-<!--        &lt;!&ndash; Smoke Profile &ndash;&gt;-->
-<!--        <profile>-->
-<!--            <id>smoke</id>-->
-<!--            <properties>-->
-<!--                <suiteXmlFile>SmokeSuite.xml</suiteXmlFile>-->
-<!--            </properties>-->
-<!--        </profile>-->
+        <!-- Smoke Profile -->
+        <profile>
+            <id>smoke</id>
+            <properties>
+                <suiteXmlFile>SmokeSuite.xml</suiteXmlFile>
+            </properties>
+        </profile>
 
-<!--        &lt;!&ndash; Regression Profile &ndash;&gt;-->
-<!--        <profile>-->
-<!--            <id>regression</id>-->
-<!--            <properties>-->
-<!--                <suiteXmlFile>RegressionSuite.xml</suiteXmlFile>-->
-<!--            </properties>-->
-<!--        </profile>-->
+        <!-- Regression Profile -->
+        <profile>
+            <id>regression</id>
+            <properties>
+                <suiteXmlFile>RegressionSuite.xml</suiteXmlFile>
+            </properties>
+        </profile>
 
-<!--    </profiles>-->
+    </profiles>
 
 </project>
