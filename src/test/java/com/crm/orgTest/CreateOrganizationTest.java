@@ -4,6 +4,8 @@ import GenericUtilities.ExcelUtility;
 import GenericUtilities.FileUtility;
 import GenericUtilities.JavaUtility;
 import GenericUtilities.WebdriverUtility;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
 import com.crm.basetest.BaseClass;
 import objectRepository.HomePage;
 import objectRepository.OrganizationPage;
@@ -22,13 +24,15 @@ import java.io.IOException;
 @Listeners(com.crm.Listener.ListenerImplementation.class)
 public class CreateOrganizationTest extends BaseClass {
 
+    public static ExtentTest test;
+
     FileUtility flib = new FileUtility();
     ExcelUtility elib = new ExcelUtility();
     JavaUtility jlib = new JavaUtility();
     WebdriverUtility wlib = new WebdriverUtility();
 
 
-    @Test
+    @Test(groups="Regression")
     public void CreateOrganizationTest() throws IOException, InterruptedException {
         String orgName = elib.readDatatFromExcel("Org", 1, 0) + jlib.randint();
 //        1.Click on organization button on homepage......
@@ -46,6 +50,7 @@ public class CreateOrganizationTest extends BaseClass {
         WebElement headertext = driver.findElement(By.xpath("//span[contains(text(), 'Organization Information')]"));
         wlib.waituntilelementtobevisible(driver, 20, headertext);
         String text = headertext.getText();
+        test.log(Status.INFO,"org created");
         if (text.contains(orgName)) {
             System.out.println("test case- passed");
         } else {
@@ -53,7 +58,7 @@ public class CreateOrganizationTest extends BaseClass {
         }
     }
 
-    @Test
+    @Test(groups="Regression")
     public void createOrgTestwithPhone() throws IOException, InterruptedException {
         String orgName = elib.readDatatFromExcel("Org", 1, 0) + jlib.randint();
         String phonenumber = elib.readDatatFromExcel("Org", 1, 1).toString()+jlib.randint();
@@ -73,6 +78,7 @@ public class CreateOrganizationTest extends BaseClass {
         WebElement phone = driver.findElement(By.xpath("//span[@id='dtlview_Phone']"));
         wlib.waituntilelementtobevisible(driver, 20, phone);
         String text = phone.getText();
+        test.log(Status.INFO,"org created");
         if (text.contains(phonenumber)) {
             System.out.println("phone number verify test case- passed");
         }
@@ -82,7 +88,7 @@ public class CreateOrganizationTest extends BaseClass {
 
     }
 
-    @Test
+    @Test(groups="Smoke")
     public void createOrgwithIndustrytype() throws IOException, InterruptedException {
         String orgName=elib.readDatatFromExcel("Org",1,0)+jlib.randint();
         HomePage hp= new HomePage(driver);
@@ -96,6 +102,7 @@ public class CreateOrganizationTest extends BaseClass {
         wlib.handledropdown("Customer",op.type);
 
         op.saveButton.click();
+        test.log(Status.INFO,"org created");
         Thread.sleep(5000);
     }
 }

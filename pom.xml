@@ -8,22 +8,25 @@
     <artifactId>vtigerProject</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <!-- ✅ Java version (stable) -->
+    <!-- ✅ Java version -->
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
+
+        <!-- ✅ Default suite (fallback if no profile used) -->
+        <suiteXmlFile>RegressionSuite.xml</suiteXmlFile>
     </properties>
 
     <dependencies>
 
-        <!-- ✅ Selenium -->
+        <!-- Selenium -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>4.20.0</version>
         </dependency>
 
-        <!-- ✅ TestNG -->
+        <!-- TestNG -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
@@ -31,14 +34,14 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- ✅ Extent Reports -->
+        <!-- Extent Reports -->
         <dependency>
             <groupId>com.aventstack</groupId>
             <artifactId>extentreports</artifactId>
             <version>5.1.1</version>
         </dependency>
 
-        <!-- ✅ Apache POI (Excel handling) -->
+        <!-- Apache POI -->
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
@@ -51,7 +54,7 @@
             <version>5.2.5</version>
         </dependency>
 
-        <!-- ✅ JetBrains annotations (fixed version) -->
+        <!-- JetBrains annotations -->
         <dependency>
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
@@ -75,13 +78,14 @@
                 </configuration>
             </plugin>
 
-            <!-- Surefire plugin for TestNG -->
+            <!-- ✅ Surefire plugin (UPDATED) -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.5</version>
                 <configuration>
                     <suiteXmlFiles>
+                        <!-- 🔥 Dynamic based on profile -->
                         <suiteXmlFile>testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
@@ -89,5 +93,26 @@
 
         </plugins>
     </build>
+
+    <!-- ✅ PROFILES ADDED -->
+<!--    <profiles>-->
+
+<!--        &lt;!&ndash; Smoke Profile &ndash;&gt;-->
+<!--        <profile>-->
+<!--            <id>smoke</id>-->
+<!--            <properties>-->
+<!--                <suiteXmlFile>SmokeSuite.xml</suiteXmlFile>-->
+<!--            </properties>-->
+<!--        </profile>-->
+
+<!--        &lt;!&ndash; Regression Profile &ndash;&gt;-->
+<!--        <profile>-->
+<!--            <id>regression</id>-->
+<!--            <properties>-->
+<!--                <suiteXmlFile>RegressionSuite.xml</suiteXmlFile>-->
+<!--            </properties>-->
+<!--        </profile>-->
+
+<!--    </profiles>-->
 
 </project>

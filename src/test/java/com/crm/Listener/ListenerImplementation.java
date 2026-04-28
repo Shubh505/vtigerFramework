@@ -93,5 +93,6 @@ public class ListenerImplementation implements ITestListener, ISuiteListener {
     @Override
     public void onTestSuccess(ITestResult result) {
         System.out.println(result.getMethod().getMethodName());
+        test.log(Status.PASS, result.getMethod().getMethodName());
     }
 }

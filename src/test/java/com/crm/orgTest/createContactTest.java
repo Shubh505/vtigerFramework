@@ -13,7 +13,7 @@ import java.io.IOException;
 
 public class createContactTest extends BaseClass {
 
-    @Test
+    @Test(groups={"Regression", "Smoke"})
     public void createContactBynameAndPhone() throws IOException, InterruptedException {
 
         ContactPage cp= new ContactPage(driver);
